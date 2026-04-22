@@ -1,13 +1,16 @@
 using Xunit;
 using System.Collections.Generic;
+using Bolillero.Core.Entidades;
+
+namespace BolilleroTests;
 
 public class JugarPierdeTests
 {
-    private Bolillero _bolillero;
+    private Bolillero.Core.Entidades.Bolillero _bolillero;
 
     public JugarPierdeTests()
     {
-        _bolillero = new Bolillero(10, new Primero());
+        _bolillero = new Bolillero.Core.Entidades.Bolillero(10, new Primero());
     }
 
     [Fact]

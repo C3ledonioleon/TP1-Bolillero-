@@ -411,6 +411,16 @@
         "build": {
           "build/net6.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "Bolillero.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Bolillero.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Bolillero.Core.dll": {}
+        }
       }
     }
   },
@@ -932,10 +942,16 @@
         "xunit.runner.visualstudio.2.8.2.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "Bolillero.Core/1.0.0": {
+      "type": "project",
+      "path": "../Bolillero.Core/Bolillero.Core.csproj",
+      "msbuildProject": "../Bolillero.Core/Bolillero.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Bolillero.Core >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
       "coverlet.collector >= 6.0.2",
       "xunit >= 2.9.2",
@@ -943,23 +959,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lab15-PC01\\.nuget\\packages\\": {},
+    "C:\\Users\\Celedonio\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\TP1-Bolillero-\\BolilleroTests\\BolilleroTests.csproj",
+      "projectUniqueName": "C:\\Users\\Celedonio\\Documents\\GitHub\\TP1-Bolillero-\\BolilleroTests\\BolilleroTests.csproj",
       "projectName": "BolilleroTests",
-      "projectPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\TP1-Bolillero-\\BolilleroTests\\BolilleroTests.csproj",
-      "packagesPath": "C:\\Users\\Lab15-PC01\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\TP1-Bolillero-\\BolilleroTests\\obj\\",
+      "projectPath": "C:\\Users\\Celedonio\\Documents\\GitHub\\TP1-Bolillero-\\BolilleroTests\\BolilleroTests.csproj",
+      "packagesPath": "C:\\Users\\Celedonio\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Celedonio\\Documents\\GitHub\\TP1-Bolillero-\\BolilleroTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Lab15-PC01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Celedonio\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -968,13 +984,16 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Celedonio\\Documents\\GitHub\\TP1-Bolillero-\\Bolillero.Core\\Bolillero.Core.csproj": {
+              "projectPath": "C:\\Users\\Celedonio\\Documents\\GitHub\\TP1-Bolillero-\\Bolillero.Core\\Bolillero.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -1026,7 +1045,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

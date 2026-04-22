@@ -1,12 +1,15 @@
 using Xunit;
+using Bolillero.Core.Entidades;
+
+namespace BolilleroTests;
 
 public class SacarBolillaTests
 {
-    private Bolillero _bolillero;
+    private Bolillero.Core.Entidades.Bolillero _bolillero;
 
     public SacarBolillaTests()
     {
-        _bolillero = new Bolillero(10, new Primero());
+        _bolillero = new Bolillero.Core.Entidades.Bolillero(10, new Primero());
     }
 
     [Fact]

@@ -1,0 +1,12 @@
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\bin\Debug\net9.0\Bolillero.Core.deps.json
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\bin\Debug\net9.0\Bolillero.Core.dll
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\bin\Debug\net9.0\Bolillero.Core.pdb
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\obj\Debug\net9.0\Bolillero.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\obj\Debug\net9.0\Bolillero.Core.AssemblyInfoInputs.cache
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\obj\Debug\net9.0\Bolillero.Core.AssemblyInfo.cs
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\obj\Debug\net9.0\Bolillero.Core.csproj.CoreCompileInputs.cache
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\obj\Debug\net9.0\Bolillero.Core.sourcelink.json
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\obj\Debug\net9.0\Bolillero.Core.dll
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\obj\Debug\net9.0\refint\Bolillero.Core.dll
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\obj\Debug\net9.0\Bolillero.Core.pdb
+C:\Users\Celedonio\Documents\GitHub\TP1-Bolillero-\Bolillero.Core\obj\Debug\net9.0\ref\Bolillero.Core.dll
