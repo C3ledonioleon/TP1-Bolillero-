@@ -25,6 +25,24 @@ namespace Bolillero.Core.Entidades
             }
         }
 
+        private Bolillero(List<int> adentro, List<int> afuera, IAzar azar)
+        {
+            Adentro = new List<int>(adentro);
+            Afuera = new List<int>(afuera);
+            Azar = azar;
+        }
+
+        public object Clone()
+        {
+            // Creamos un nuevo bolillero copiando las listas
+            return new Bolillero(
+                new List<int>(Adentro),  // Copia de la lista adentro
+                new List<int>(Afuera),   // Copia de la lista afuera
+                Azar       // Usamos la misma instancia del azar (controlado)
+            );
+        }
+
+
         public int SacarBolilla()
         {
             int indice = Azar.ObtenerSiguiente(Adentro.Count);
