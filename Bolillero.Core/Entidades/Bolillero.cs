@@ -7,7 +7,7 @@ using Bolillero.Core.Interfaces;
 
 namespace Bolillero.Core.Entidades
 {
-    public class Bolillero
+    public class Bolillero : ICloneable
     {
         public List<int> Adentro { get; set; } = new List<int>();
         public List<int> Afuera { get; set; } = new List<int>();
