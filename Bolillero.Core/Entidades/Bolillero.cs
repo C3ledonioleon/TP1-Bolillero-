@@ -2,52 +2,46 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Bolillero.Core.Interfaces;
 
 namespace Bolillero.Core.Entidades
 {
-    public class Bolillero : ICloneable
+    public class Bolillero
     {
-        private List<int> _bolillasAdentro;
-        private List<int> _bolillasAfuera;
-        private IAzar _azar;
+        public List<int> Adentro { get; set; } = new List<int>();
+        public List<int> Afuera { get; set; } = new List<int>();
+        public IAzar Azar { get; set; }
 
         public Bolillero(int cantidad, IAzar azar)
         {
-            _azar = azar;
-            _bolillasAdentro = new List<int>();
-            _bolillasAfuera = new List<int>();
+            Azar = azar;
+            Adentro = new List<int>();
+            Afuera = new List<int>();
 
             for (int i = 0; i < cantidad; i++)
             {
-                _bolillasAdentro.Add(i);
+                Adentro.Add(i);
             }
         }
-        private Bolillero(List<int> adentro, List<int> afuera, IAzar azar)
-        {
-            _bolillasAdentro = new List<int>(adentro);
-            _bolillasAfuera = new List<int>(afuera);
-            _azar = azar;
-        }
-        public object Clone()
-        {
-            return new Bolillero(_bolillasAdentro, _bolillasAfuera, _azar);
-        }
+
         public int SacarBolilla()
         {
-            int indice = _azar.ObtenerSiguiente(_bolillasAdentro.Count);
-            int bolilla = _bolillasAdentro[indice];
+            int indice = Azar.ObtenerSiguiente(Adentro.Count);
+            int bolilla = Adentro[indice];
 
-            _bolillasAdentro.RemoveAt(indice);
-            _bolillasAfuera.Add(bolilla);
+            Adentro.RemoveAt(indice);
+            Afuera.Add(bolilla);
 
             return bolilla;
         }
+
         public void ReingresarBolillas()
         {
-            _bolillasAdentro.AddRange(_bolillasAfuera);
-            _bolillasAfuera.Clear();
+            Adentro.AddRange(Afuera);
+            Afuera.Clear();
         }
+
         public bool Jugar(List<int> jugada)
         {
             foreach (var numero in jugada)
@@ -62,6 +56,7 @@ namespace Bolillero.Core.Entidades
 
             return true;
         }
+
         public int JugarNVeces(List<int> jugada, int veces)
         {
             int ganadas = 0;
@@ -76,7 +71,8 @@ namespace Bolillero.Core.Entidades
 
             return ganadas;
         }
-        public int BolillasAdentro => _bolillasAdentro.Count;
-        public int BolillasAfuera => _bolillasAfuera.Count;
+
+        public int BolillasAdentro => Adentro.Count;
+        public int BolillasAfuera => Afuera.Count;
     }
 }
