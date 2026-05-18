@@ -33,4 +33,14 @@ public class SimulacionTest
         // Verificás que las victorias sean consistentes
         Assert.True(victorias > 0);
     }
-}
+
+    [Fact]
+    public async Task SimularConHilosAsyncTest()
+    {
+        var bolillero = new Bolillero.Core.Entidades.Bolillero(10, new Primero());
+        var simulacion = new Simulacion();
+
+        long resultado = await simulacion.SimularConHilosAsync(bolillero,new List<int> { 0, 1 },1,1);
+        Assert.Equal(1, resultado);
+    }
+    }
