@@ -1,70 +1,109 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Bolillero.Core.Entidades;
 
-namespace Bolillero.Core.Entidades{
-
-public class Simulacion
+namespace Bolillero.Core.Entidades
 {
-    public long SimularSinHilos(Bolillero bolillero, List<int> jugada, int cantidad)
+    public class Simulacion
     {
-        return bolillero.JugarNVeces(jugada, cantidad);
-    }
-
-    public long SimularConHilos(Bolillero bolillero, List<int> jugada, int simulaciones, int hilos)
-    {
-        long total = 0;
-        List<Task<long>> tareas = new List<Task<long>>();
-
-        int porHilo = simulaciones / hilos;
-
-        for (int i = 0; i < hilos; i++)
+        public long SimularSinHilos(
+            Bolillero bolillero,
+            List<int> jugada,
+            int cantidad)
         {
-            var copia = (Bolillero)bolillero.Clone();
-            //"Convertimos el resultado a long para asegurar consistencia en el tipo y evitar conflictos al sumar las tareas."
-            tareas.Add(Task.Run(() =>
+            return bolillero.JugarNVeces(jugada, cantidad);
+        }
+
+        public long SimularConHilos(
+            Bolillero bolillero,
+            List<int> jugada,
+            int simulaciones,
+            int hilos)
+        {
+            long total = 0;
+
+            List<Task<long>> tareas = new List<Task<long>>();
+
+            int porHilo = simulaciones / hilos;
+
+            for (int i = 0; i < hilos; i++)
             {
-                return (long)copia.JugarNVeces(jugada, porHilo);
-            }));
+                var copia = (Bolillero)bolillero.Clone();
+
+                tareas.Add(Task.Run(() =>
+                {
+                    return (long)copia.JugarNVeces(jugada, porHilo);
+                }));
+            }
+
+            Task.WaitAll(tareas.ToArray());
+
+            foreach (var t in tareas)
+            {
+                total += t.Result;
+            }
+
+            return total;
         }
 
-        Task.WaitAll(tareas.ToArray());
-
-        foreach (var t in tareas)
+        public async Task<long> SimularConHilosAsync(
+            Bolillero bolillero,
+            List<int> jugada,
+            int simulaciones,
+            int hilos)
         {
-            total += t.Result;
+            List<Task<long>> tareas = new List<Task<long>>();
+
+            int porHilo = simulaciones / hilos;
+
+            for (int i = 0; i < hilos; i++)
+            {
+                var copia = (Bolillero)bolillero.Clone();
+
+                tareas.Add(Task.Run(() =>
+                {
+                    return (long)copia.JugarNVeces(jugada, porHilo);
+                }));
+            }
+
+            long[] resultados = await Task.WhenAll(tareas);
+
+            long total = 0;
+
+            foreach (var resultado in resultados)
+            {
+                total += resultado;
+            }
+
+            return total;
         }
 
-        return total;
-    }
-    public async Task<long> SimularConHilosAsync(Bolillero bolillero,List<int> jugada,int simulaciones,int hilos)
-{
-    List<Task<long>> tareas = new List<Task<long>>();
-
-    int porHilo = simulaciones / hilos;
-
-    for (int i = 0; i < hilos; i++)
-    {
-        var copia = (Bolillero)bolillero.Clone();
-
-        tareas.Add(Task.Run(() =>
+        public async Task<long> SimularParallelAsync(
+            Bolillero bolillero,
+            List<int> jugada,
+            int simulaciones)
         {
-            return (long)copia.JugarNVeces(jugada, porHilo);
-        }));
+            long total = 0;
+
+            await Task.Run(() =>
+            {
+                Parallel.For(0, simulaciones, i =>
+                {
+                    var copia = (Bolillero)bolillero.Clone();
+
+                    copia.ReingresarBolillas();
+
+                    if (copia.Jugar(jugada))
+                    {
+                        Interlocked.Increment(ref total);
+                    }
+                });
+        });
+
+            return total;
     }
-
-    long[] resultados = await Task.WhenAll(tareas);
-
-    long total = 0;
-
-    foreach (var resultado in resultados)
-    {
-        total += resultado;
     }
-
-    return total;
-}
-}
 }

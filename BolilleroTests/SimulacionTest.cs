@@ -1,7 +1,4 @@
-using Xunit;
-using System.Collections.Generic;
 using Bolillero.Core.Entidades;
-using System.Threading.Tasks;
 
 public class SimulacionTest
 {
@@ -43,4 +40,17 @@ public class SimulacionTest
         long resultado = await simulacion.SimularConHilosAsync(bolillero,new List<int> { 0, 1 },1,1);
         Assert.Equal(1, resultado);
     }
-    }
+   [Fact]
+        public async Task SimularParallelAsync_DeberiaRetornarUnAcierto()
+        {
+            var bolillero = new Bolillero.Core.Entidades.Bolillero(10, new Primero());
+            var simulacion = new Simulacion();
+            var jugada = new List<int> { 0, 1 };
+
+            long resultado =
+                await simulacion.SimularParallelAsync(bolillero,jugada,1);
+                
+            Assert.Equal(1, resultado);
+        }
+}
+
